@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 02</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+
+    <img class="elementos" id="fondo" src="../img/pagina02/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto" src="../img/pagina02/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="robot" src="../img/pagina02/robot.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos infos" id="info_menu" src="../img/pagina02/info_menu.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info_recargar" src="../img/pagina02/info_recargar.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info_bocina" src="../img/pagina02/info_bocina.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info_navegacion" src="../img/pagina02/info_navegacion.png" data-posX="0" data-posY="0" alt="">
+    
+    <img class="elementos botones" id="menu" src="../img/pagina02/menu.png" data-posX="411" data-posY="133" alt="">
+    <img class="elementos botones" id="recargar" src="../img/pagina02/recargar.png" data-posX="429" data-posY="227" alt="">
+    <img class="elementos botones" id="bocina" src="../img/pagina02/bocina.png" data-posX="429" data-posY="324" alt="">
+    <img class="elementos botones" id="navegacion" src="../img/pagina02/navegacion.png" data-posX="408" data-posY="425" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;        
+        const texto = $('#texto');
+        const fondo = $('#fondo');
+        const robot = $('#robot');
+        const info_menu = $('#info_menu');
+        const info_bocina = $('#info_bocina');
+        const info_recargar = $('#info_recargar');
+        const info_navegacion = $('#info_navegacion');
+        const menu = $('#menu');
+        const bocina = $('#bocina');
+        const recargar = $('#recargar');
+        const navegacion = $('#navegacion');
+
+        const botones = $('.botones');
+
+        const informacion = [info_menu, info_recargar, info_bocina, info_navegacion];
+        const btns = [menu, recargar, bocina, navegacion];
+
+        let indexInfo = 0;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Pfizer_Documentacion_02_01.mp3')
+        ]
+
+        const audioBotones = [
+            new Audio('../audios/Pfizer_Documentacion_02_02.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_02_03.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_02_04.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_02_05.mp3')
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.activarBotonAtras();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], botonera, 2);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(robot, 'izquierda-derecha', 1, 1);
+            animacionEntrada(texto, 'derecha-izquierda', 1, 1);
+        }
+
+        function botonera(){
+            parpadear(btns[indexInfo]);
+        }
+
+        botones.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    aplicacion.reproducirAudio(audioBotones[indexInfo], siguiente, 1);
+                    animacionEntrada(informacion[indexInfo], 'default', 1);
+                    dejarParpadear($(this));
+                }
+            });
+        });
+
+        function siguiente(){
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                botonera();
+            }
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
+        
+
+    </script>
+</body>
+</html>
