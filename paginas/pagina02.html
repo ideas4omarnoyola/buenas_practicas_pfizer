@@ -58,6 +58,7 @@
         const informacion = [info_menu, info_recargar, info_bocina, info_navegacion];
         const btns = [menu, recargar, bocina, navegacion];
 
+        let delay = 1;
         let indexInfo = 0;
 
         // Audios------------------------------------------------------
@@ -84,6 +85,11 @@
             animacionEntrada(fondo, 'default', 1);
             animacionEntrada(robot, 'izquierda-derecha', 1, 1);
             animacionEntrada(texto, 'derecha-izquierda', 1, 1);
+
+            botones.each(function(){
+                delay = delay + 1;
+                animacionEntrada($(this), 'default', 1, delay);
+            });
         }
 
         function botonera(){

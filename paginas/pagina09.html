@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 09</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+    <script src="../js/librerias/jquery-ui.min.js"></script>
+    <script src="../js/librerias/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina09/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="btnIniciar" src="../img/pagina09/btnIniciar.png" data-posX="419" data-posY="377" alt="">
+    <img class="elementos" id="base" src="../img/pagina09/base.png" data-posX="0" data-posY="0" alt="">
+
+    <!-------------------------------- drops ----------------------------->
+    <img class="elementos drops" id="drop3" data-lugar="3" src="../img/pagina09/drop.png" data-posX="770" data-posY="109" alt="">
+    <img class="elementos drops" id="drop4" data-lugar="4" src="../img/pagina09/drop.png" data-posX="770" data-posY="195" alt="">
+    <img class="elementos drops" id="drop2" data-lugar="2" src="../img/pagina09/drop.png" data-posX="770" data-posY="279" alt="">
+    <img class="elementos drops" id="drop5" data-lugar="5" src="../img/pagina09/drop.png" data-posX="770" data-posY="363" alt="">
+    <img class="elementos drops" id="drop1" data-lugar="1" src="../img/pagina09/drop.png" data-posX="770" data-posY="446" alt="">
+
+    <!-------------------------------- drags ----------------------------->
+    <img class="elementos drags" id="drag1" data-lugar="1" src="../img/pagina09/drag1.png" data-posX="47" data-posY="137" alt="">
+    <img class="elementos drags" id="drag2" data-lugar="2" src="../img/pagina09/drag2.png" data-posX="47" data-posY="184" alt="">
+    <img class="elementos drags" id="drag3" data-lugar="3" src="../img/pagina09/drag3.png" data-posX="44" data-posY="225" alt="">
+    <img class="elementos drags" id="drag4" data-lugar="4" src="../img/pagina09/drag4.png" data-posX="47" data-posY="270" alt="">
+    <img class="elementos drags" id="drag5" data-lugar="5" src="../img/pagina09/drag5.png" data-posX="47" data-posY="318" alt="">
+
+    <img class="elementos" id="btnEvaluar" src="../img/pagina09/btnEvaluar.png" data-posX="85" data-posY="378" alt="">
+    <img class="elementos" id="retroBuena" src="../img/pagina09/retroBuena.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="retroMala" src="../img/pagina09/retroMala.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="btnReintentar" src="../img/pagina09/btnReintentar.png" data-posX="417" data-posY="410" alt="">
+    <img class="elementos" id="btnContinuar" src="../img/pagina09/btnContinuar.png" data-posX="417" data-posY="410" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondo = $('#fondo');
+        const btnIniciar = $('#btnIniciar');
+        const base = $('#base');
+        const drags = $('.drags');
+        const drops = $('.drops');
+        const btnEvaluar = $('#btnEvaluar');
+        const btnReintentar = $('#btnReintentar');
+        const btnContinuar = $('#btnContinuar');
+        const retroBuena = $('#retroBuena');
+        const retroMala = $('#retroMala');
+
+        const drag1 = $('#drag1');
+        const drag2 = $('#drag2');
+        const drag3 = $('#drag3');
+        const drag4 = $('#drag4');
+        const drag5 = $('#drag5');
+
+        const drop1 = $('#drop1');
+        const drop2 = $('#drop2');
+        const drop3 = $('#drop3');
+        const drop4 = $('#drop4');
+        const drop5 = $('#drop5');
+
+        let dragSelect;
+        let dropSelect;
+        let colocados = 0;
+        let aciertos = 0;
+
+        drags.css('cursor', 'grab');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Pfizer_Documentacion_09_01.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_09_02.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(fondo, 'default', 1, 1);
+            animacionEntrada(base, 'default', 1, 1);
+            
+            entradaParte1();
+
+            setTimeout(()=>{
+                completarOraciones();
+            }, 3000);
+        }
+
+        function entradaParte1(){
+            animacionEntrada(drop1, 'default', 1, 1);
+            animacionEntrada(drop2, 'default', 1, 1);
+            animacionEntrada(drop3, 'default', 1, 1);
+            animacionEntrada(drop4, 'default', 1, 1);
+            animacionEntrada(drop5, 'default', 1, 1);
+            animacionEntrada(drag1, 'derecha-izquierda', 1, 1);
+            animacionEntrada(drag2, 'derecha-izquierda', 1, 1.5);
+            animacionEntrada(drag3, 'derecha-izquierda', 1, 2);
+            animacionEntrada(drag4, 'derecha-izquierda', 1, 2.5);
+            animacionEntrada(drag5, 'derecha-izquierda', 1, 3);
+        }
+
+        function completarOraciones(){
+
+            drags.draggable({
+                revert: true,
+                start: function( event, ui ) {
+                    dragSelect = $(this).data('lugar');
+                    $(this).css('cursor', 'grabbing');
+                },             
+                stop: function( event, ui ) {
+                    $(this).css('cursor', 'grab');
+                }             
+            });
+
+            drops.droppable({
+                accept: drags,
+                tolerance: "intersect",
+                drop: function( event, ui ) {
+                    dropSelect = $(this).data('lugar');
+                    soltar();
+                }
+            });
+        }
+
+        function soltar(){
+            // Selecionar los elementos correspondiente
+            const dragActivo = $(`#drag${dragSelect}`);
+            const dropActivo = $(`#drop${dropSelect}`);
+
+            //Sacar el top y el left del drop 
+            const dropTop = dropActivo.css('top');
+            const dropLeft = dropActivo.css('left');
+
+            //Posicionar el drag en el drop
+            dragActivo.css({
+                'top': dropTop,
+                'left': dropLeft
+            });
+
+            //Deshabilitar el regreso
+            dragActivo.draggable({
+                revert: false,
+            });
+
+            dragActivo.draggable('disable');
+            dragActivo.css('cursor', 'default');
+
+
+            //Comparar si es el lugar correspondiente
+            if(dragSelect == dropSelect){
+                aciertos++;
+            }
+
+            colocados++;
+
+            if(colocados == 5){
+                
+                parpadear(btnEvaluar);
+            }
+        }
+
+        function salidaParte1() { 
+
+            animacionSalida(base, 'default', 1);
+            animacionSalida(drop1, 'default', 1);
+            animacionSalida(drop2, 'default', 1);
+            animacionSalida(drop3, 'default', 1);
+            animacionSalida(drop4, 'default', 1);
+            animacionSalida(drop5, 'default', 1);
+            animacionSalida(drag1, 'default', 1);
+            animacionSalida(drag2, 'default', 1);
+            animacionSalida(drag3, 'default', 1);
+            animacionSalida(drag4, 'default', 1);
+            animacionSalida(drag5, 'default', 1);
+        }
+
+        btnEvaluar.click(function(){
+
+            animacionSalida(btnEvaluar, 'default', 1);
+            salidaParte1();
+
+            if(aciertos == 5){
+                retroPositiva();
+            }
+            else{
+                retroNegativa();
+            }
+        });
+
+        function retroPositiva(){
+
+            aplicacion.reproducirAudio(audio[0], activarContinuar, 1);
+            animacionEntrada(retroBuena, 'default', 1);
+        }
+
+        function activarContinuar(){
+            parpadear(btnContinuar);
+        }
+
+        function retroNegativa(){
+
+            aplicacion.reproducirAudio(audio[1], activarReintentar, 1);
+            animacionEntrada(retroMala, 'default', 1);
+        }
+
+        function activarReintentar(){
+            parpadear(btnReintentar);
+        }
+
+        btnReintentar.click(function(){
+            aplicacion.recargarPagina();
+        });
+
+        btnContinuar.click(function(){
+            aplicacion.siguientePagina();
+        });
+
+
+    </script>
+</body>
+</html>

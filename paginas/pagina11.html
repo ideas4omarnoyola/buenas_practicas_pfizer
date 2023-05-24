@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 11</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+    <script src="../js/librerias/jquery-ui.min.js"></script>
+    <script src="../js/librerias/jquery.ui.touch-punch.min.js"></script>
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina11/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="nave" src="../img/pagina11/nave.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="robot" src="../img/pagina11/robot.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="../img/pagina11/instrucciones.png" data-posX="0" data-posY="0" alt="">
+
+    <div class="elementos" id="drop" data-posX="512" data-posY="83"></div>
+    
+    <img class="elementos drags" id="drag1" data-lugar="1" src="../img/pagina11/drag1.png" data-posX="285" data-posY="378" alt="">
+    
+    <img class="elementos" id="cuadro1" src="../img/pagina11/cuadro1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro2" src="../img/pagina11/cuadro2.png" data-posX="0" data-posY="0"/>
+
+    <img class="elementos" id="atras" src="../img/pagina11/atras.png" data-posX="154" data-posY="321"/>
+    <img class="elementos" id="adelante" src="../img/pagina11/adelante.png" data-posX="927" data-posY="321"/>
+
+
+    <img class="elementos" id="pop1" src="../img/pagina11/pop1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos botonCerrar" id="cerrar1" src="../img/pagina11/cerrar.png" data-posX="820" data-posY="160" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const nave = $('#nave');
+        const fondo = $('#fondo');
+        const instrucciones = $('#instrucciones');
+        const robot = $('#robot');
+
+        const boton1 = $('#boton1');
+        
+        const drop = $('#drop');
+
+        const drag1 = $('#drag1');
+
+        const drags = $('.drags');
+
+        const cuadro1 = $('#cuadro1');
+        const cuadro2 = $('#cuadro2');
+        const atras = $('#atras');
+        const adelante = $('#adelante');
+
+        atras.css('cursor', 'pointer');
+
+        const slides = [
+            cuadro1,
+            cuadro2
+        ]
+
+        const pop1 = $('#pop1');
+        const cerrar1 = $('#cerrar1');
+
+        const botones = $('.botones');
+
+        drop.css({
+            'width': '373px',
+            'height': '200px',
+            'background': 'transparent'
+        });
+
+        drags.css('cursor', 'pointer');
+
+        let delay = 0;
+        let colocados = 0;
+        let noSlide = 0;
+        let pop1Visualizado = false;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Pfizer_Documentacion_11_01.mp3')
+        ]
+
+        const audiosSlides = [
+            new Audio('../audios/Pfizer_Documentacion_11_02.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_11_03.mp3')
+        ];
+
+        const audioPop = [
+            new Audio('../audios/Pfizer_Documentacion_11_04.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], actividadDrag, 1);
+            animacionEntrada(fondo, 'default', 1, 1);
+        }
+
+        function actividadDrag(){
+            animacionEntrada(drop, 'default', 1);
+            animacionEntrada(nave, 'default', 1);
+            
+            drags.each(function(){
+                delay = delay + .5;
+                animacionEntrada($(this), 'derecha-izquierda', 1, delay);
+            });
+
+            arrastrarCometas();
+        }
+
+        function arrastrarCometas(){
+            drags.draggable({
+                revert: true,
+                start: function( event, ui ) {
+                    dragSelect = $(this).data('lugar');
+                    $(this).css('cursor', 'grabbing');
+                },             
+                stop: function( event, ui ) {
+                    $(this).css('cursor', 'grab');
+                }             
+            });
+
+            drop.droppable({
+                accept: drags,
+                tolerance: "intersect",
+                drop: function( event, ui ) {
+                    dropSelect = $(this).data('lugar');
+                    soltar();
+                }
+            });
+        }
+
+        function soltar(){
+            // Selecionar los elementos correspondiente
+            const dragActivo = $(`#drag${dragSelect}`);
+            const dropActivo = $(`#drop${dropSelect}`);
+
+            animacionSalida(dragActivo, 'default', 1);
+            colocados++;
+
+            if(colocados == 1){
+                animacionSalida(drop, 'default', 1);
+                animacionSalida(robot, 'default', 1);
+                animacionSalida(nave, 'default', 1);
+                actividad();
+            }
+        }
+
+        function actividad(){
+            carrusel(noSlide)
+        }
+
+        function carrusel(pantalla){
+            aplicacion.reproducirAudio(audiosSlides[pantalla], botonAdelante, 1);
+            animacionEntrada(slides[pantalla], 'default', 1, 1);
+
+            if(pantalla > 0 & atras.css('display') == 'none'){
+                animacionEntrada(atras, 'default', 1, 1);
+            }
+        }
+
+        function botonAdelante(){
+            if(noSlide < slides.length -1){
+                parpadear(adelante);
+            }
+            if(noSlide == slides.length -1){
+                mostrarPop2();
+            }
+        }
+
+        adelante.click(function(){
+            if(adelante.css('cursor') == 'pointer'){
+                animacionSalida(slides[noSlide], 'default', 1);
+                aplicacion.detenerAudios();
+                dejarParpadear(adelante);
+                animacionSalida(adelante, 'default', 1);
+                noSlide++;
+                setTimeout(()=>{
+                    carrusel(noSlide);
+                }, 500);
+            }
+        });
+
+        atras.click(function(){
+            if(noSlide > 0){
+                animacionSalida(slides[noSlide], 'default', 1);
+                aplicacion.detenerAudios();
+                noSlide--;
+                
+                setTimeout(()=>{
+                    carrusel(noSlide);
+                }, 500);
+            }
+        });
+
+        function mostrarPop2() {  
+            
+            if(!pop1Visualizado){
+                aplicacion.reproducirAudio(audioPop[0], cerrarPop1, 1);
+                animacionEntrada(pop1, 'default', 1, 1);
+            }
+        }
+
+        function cerrarPop1(){
+            parpadear(cerrar1);
+        }
+
+        cerrar1.click(function(){
+            dejarParpadear(cerrar1);
+            animacionSalida(pop1, 'default', 1);
+            animacionSalida(cerrar1, 'default', 1);
+            pop1Visualizado = true;
+            aplicacion.terminaPantalla();
+        });
+
+    </script>
+</body>
+</html>

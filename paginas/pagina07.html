@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 07</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina07/fondo.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="pop1" src="../img/pagina07/pop1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos botonCerrar" id="cerrar1" src="../img/pagina07/cerrar.png" data-posX="776" data-posY="134" alt="">
+
+    <img class="elementos infos" id="info1" src="../img/pagina07/info1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info2" src="../img/pagina07/info2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info3" src="../img/pagina07/info3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info4" src="../img/pagina07/info4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info5" src="../img/pagina07/info5.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info6" src="../img/pagina07/info6.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info7" src="../img/pagina07/info7.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info8" src="../img/pagina07/info8.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos" id="info9" src="../img/pagina07/info9.png" data-posX="0" data-posY="0" alt="">
+
+    
+    
+    <img class="elementos" id="boton1" src="../img/pagina07/boton1.png" data-posX="380" data-posY="170" alt="">
+    <img class="elementos" id="pop2" src="../img/pagina07/pop2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos botonCerrar" id="cerrar2" src="../img/pagina07/cerrar.png" data-posX="776" data-posY="134" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const fondo = $('#fondo');
+
+        const boton1 = $('#boton1');
+        const info1 = $('#info1');
+        const info2 = $('#info2');
+        const info3 = $('#info3');
+        const info4 = $('#info4');
+        const info5 = $('#info5');
+        const info6 = $('#info6');
+        const info7 = $('#info7');
+        const info8 = $('#info8');
+        const info9 = $('#info9');
+
+        const pop1 = $('#pop1');
+        const pop2 = $('#pop2');
+        const cerrar1 = $('#cerrar1');
+        const cerrar2 = $('#cerrar2');
+
+        const botones = $('.botones');
+
+        const informacion = [info1, info2, info3, info4, info5, info6, info7, info8, info9];
+
+        let indexInfo = 0;
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Pfizer_Documentacion_07_01.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_07_03.mp3')
+        ]
+
+        const audioInfo = [
+            new Audio('../audios/Pfizer_Documentacion_07_04.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_07_05.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_07_06.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_07_07.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_07_08.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_07_09.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_07_10.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_07_11.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_07_12.mp3')
+        ]
+
+        const audioPop = [
+            new Audio('../audios/Pfizer_Documentacion_07_02.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_07_13.mp3')
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], locutarPop1, 1);
+            animacionEntrada(fondo, 'default', 1, 1);
+            animacionEntrada(pop1, 'default', 1, 1);
+        }
+
+        function locutarPop1() {  
+            aplicacion.reproducirAudio(audioPop[0], cerrarPop1, 1);
+        }
+
+        
+        function cerrarPop1(){
+            parpadear(cerrar1);
+        }
+
+        cerrar1.click(function(){
+            dejarParpadear(cerrar1);
+            animacionSalida(cerrar1, 'default', 1);
+            animacionSalida(pop1, 'default', 1);
+            animacionEntrada(boton1, 'default', 1);
+            locutarDefinicion();
+        });
+
+        function locutarDefinicion(){
+            aplicacion.reproducirAudio(audio[1], reglas, 1);
+            animacionEntrada(texto, 'default', 1);
+        }
+
+        function reglas(){
+            narrarReglas();
+        }
+
+        function narrarReglas(){
+            aplicacion.reproducirAudio(audioInfo[indexInfo], siguiente, 1);
+            animacionEntrada(informacion[indexInfo], 'default', 1);
+        }
+
+        function siguiente(){
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                reglas();
+            }
+            else{
+                activarBoton();
+            }
+        }
+
+        function activarBoton(){
+            parpadear(boton1);
+        }
+
+        boton1.click(function(){
+            if(boton1.css('cursor') == 'pointer'){
+                aplicacion.reproducirAudio(audioPop[1], cerrarPop2, 1);
+                animacionEntrada(pop2, 'default', 1);
+                dejarParpadear(boton1);
+            }
+        });
+
+        function cerrarPop2(){
+            parpadear(cerrar2);
+        }
+
+        cerrar2.click(function(){
+            dejarParpadear(cerrar2);
+            animacionSalida(pop2, 'default', 1);
+            animacionSalida(cerrar2, 'default', 1);
+            aplicacion.terminaPantalla();
+        });
+
+    </script>
+</body>
+</html>
