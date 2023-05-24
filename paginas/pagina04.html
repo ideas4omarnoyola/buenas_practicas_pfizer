@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 04</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina04/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto" src="../img/pagina04/texto.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="pop1" src="../img/pagina04/pop1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos botonCerrar" id="cerrar1" src="../img/pagina04/cerrar1.png" data-posX="783" data-posY="136" alt="">
+
+    <img class="elementos botones" id="boton1" src="../img/pagina04/boton1.png" data-posX="328" data-posY="284" alt="">
+    <img class="elementos infos" id="info1" src="../img/pagina04/info1.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos botones" id="boton2" src="../img/pagina04/boton2.png" data-posX="510" data-posY="284" alt="">
+    <img class="elementos infos" id="info2" src="../img/pagina04/info2.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="boton3" src="../img/pagina04/boton3.png" data-posX="798" data-posY="448" alt="">
+    <img class="elementos" id="pop2" src="../img/pagina04/pop2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos botonCerrar" id="cerrar2" src="../img/pagina04/cerrar2.png" data-posX="891" data-posY="102" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const fondo = $('#fondo');
+
+        const boton1 = $('#boton1');
+        const boton2 = $('#boton2');
+        const boton3 = $('#boton3');
+        const info1 = $('#info1');
+        const info2 = $('#info2');
+        const pop1 = $('#pop1');
+        const pop2 = $('#pop2');
+        const cerrar1 = $('#cerrar1');
+        const cerrar2 = $('#cerrar2');
+
+        const botones = $('.botones');
+
+        const informacion = [info1, info2];
+        const btns = [boton1, boton2];
+
+        let indexInfo = 0;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Pfizer_Documentacion_04_01.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_04_03.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_04_06.mp3'),
+        ]
+
+        const audioPop = [
+            new Audio('../audios/Pfizer_Documentacion_04_02.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_04_07.mp3')
+        ]
+
+        const audioBotones = [
+            new Audio('../audios/Pfizer_Documentacion_04_04.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_04_05.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], locutarPop1, 1);
+            animacionEntrada(fondo, 'default', 1, 1);
+            animacionEntrada(pop1, 'default', 1, 1);
+        }
+
+        function locutarPop1() {  
+            aplicacion.reproducirAudio(audioPop[0], cerrarPop1, 1);
+        }
+
+        
+        function cerrarPop1(){
+            parpadear(cerrar1);
+        }
+
+        cerrar1.click(function(){
+            dejarParpadear(cerrar1);
+            animacionSalida(cerrar1, 'default', 1);
+            animacionSalida(pop1, 'default', 1);
+            locutarDefinicion();
+        });
+
+        function locutarDefinicion(){
+            aplicacion.reproducirAudio(audio[1], botonera, 1);
+            animacionEntrada(texto, 'default', 1);
+        }
+
+        function botonera(){
+            parpadear(btns[indexInfo]);
+        }
+
+        botones.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    aplicacion.reproducirAudio(audioBotones[indexInfo], siguiente, 1);
+                    animacionEntrada(informacion[indexInfo], 'default', 1);
+                    dejarParpadear($(this));
+                }
+            });
+        });
+
+        function siguiente(){
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                botonera();
+            }
+            else{
+                aplicacion.reproducirAudio(audio[2], activarBoton, 1);
+            }
+        }
+
+        function activarBoton(){
+            parpadear(boton3);
+        }
+
+        boton3.click(function(){
+            aplicacion.reproducirAudio(audioPop[1], cerrarPop2, 1);
+            animacionEntrada(pop2, 'default', 1);
+            dejarParpadear(boton3);
+        });
+
+        function cerrarPop2(){
+            parpadear(cerrar2);
+        }
+
+        cerrar2.click(function(){
+            dejarParpadear(cerrar2);
+            animacionSalida(pop2, 'default', 1);
+            animacionSalida(cerrar2, 'default', 1);
+            aplicacion.terminaPantalla();
+        });
+
+    </script>
+</body>
+</html>

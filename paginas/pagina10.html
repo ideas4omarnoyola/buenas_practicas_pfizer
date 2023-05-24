@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 10</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+    <script src="../js/librerias/jquery-ui.min.js"></script>
+    <script src="../js/librerias/jquery.ui.touch-punch.min.js"></script>
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina10/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="nave" src="../img/pagina10/nave.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="pop1" src="../img/pagina10/pop1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos botonCerrar" id="cerrar1" src="../img/pagina10/cerrar.png" data-posX="804" data-posY="152" alt="">
+
+    <img class="elementos" id="robot" src="../img/pagina10/robot.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="../img/pagina10/instrucciones.png" data-posX="0" data-posY="0" alt="">
+
+    <div class="elementos" id="drop" data-posX="512" data-posY="83"></div>
+    
+    <img class="elementos drags" id="drag1" data-lugar="1" src="../img/pagina10/drag1.png" data-posX="285" data-posY="378" alt="">
+    <img class="elementos drags" id="drag2" data-lugar="2" src="../img/pagina10/drag2.png" data-posX="230" data-posY="245" alt="">
+    <img class="elementos drags" id="drag3" data-lugar="3" src="../img/pagina10/drag3.png" data-posX="286" data-posY="133" alt="">
+    <img class="elementos drags" id="drag4" data-lugar="4" src="../img/pagina10/drag4.png" data-posX="362" data-posY="311" alt="">
+    <img class="elementos drags" id="drag5" data-lugar="5" src="../img/pagina10/drag5.png" data-posX="426" data-posY="203" alt="">
+    <img class="elementos drags" id="drag6" data-lugar="6" src="../img/pagina10/drag6.png" data-posX="451" data-posY="297" alt="">
+    
+    <img class="elementos" id="cuadro1" src="../img/pagina10/cuadro1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro2" src="../img/pagina10/cuadro2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro3" src="../img/pagina10/cuadro3.png" data-posX="0" data-posY="0"/>
+
+    <img class="elementos" id="atras" src="../img/pagina10/atras.png" data-posX="154" data-posY="321"/>
+    <img class="elementos" id="adelante" src="../img/pagina10/adelante.png" data-posX="927" data-posY="321"/>
+
+
+    <img class="elementos" id="pop2" src="../img/pagina10/pop2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos botonCerrar" id="cerrar2" src="../img/pagina10/cerrar.png" data-posX="820" data-posY="160" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const nave = $('#nave');
+        const fondo = $('#fondo');
+        const instrucciones = $('#instrucciones');
+        const robot = $('#robot');
+
+        const boton1 = $('#boton1');
+        
+        const drop = $('#drop');
+
+        const drag1 = $('#drag1');
+        const drag2 = $('#drag2');
+        const drag3 = $('#drag3');
+        const drag4 = $('#drag4');
+        const drag5 = $('#drag5');
+        const drag6 = $('#drag6');
+
+        const drags = $('.drags');
+
+        const cuadro1 = $('#cuadro1');
+        const cuadro2 = $('#cuadro2');
+        const cuadro3 = $('#cuadro3');
+        const atras = $('#atras');
+        const adelante = $('#adelante');
+
+        atras.css('cursor', 'pointer');
+
+        const slides = [
+            cuadro1,
+            cuadro2,
+            cuadro3,
+        ]
+
+        const pop1 = $('#pop1');
+        const pop2 = $('#pop2');
+        const cerrar1 = $('#cerrar1');
+        const cerrar2 = $('#cerrar2');
+
+        const botones = $('.botones');
+
+        drop.css({
+            'width': '373px',
+            'height': '200px',
+            'background': 'transparent'
+        });
+
+        drags.css('cursor', 'pointer');
+
+        let delay = 0;
+        let colocados = 0;
+        let noSlide = 0;
+        let pop2Visualizado = false;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Pfizer_Documentacion_10_01.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_10_03.mp3')
+        ]
+
+        const audiosSlides = [
+            new Audio('../audios/Pfizer_Documentacion_10_04.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_10_05.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_10_06.mp3'),
+        ];
+
+        const audioPop = [
+            new Audio('../audios/Pfizer_Documentacion_10_02.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_10_07.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], locutarPop1, 1);
+            animacionEntrada(fondo, 'default', 1, 1);
+            animacionEntrada(pop1, 'default', 1, 1);
+        }
+
+        function locutarPop1() {  
+            aplicacion.reproducirAudio(audioPop[0], cerrarPop1, 1);
+        }
+
+        
+        function cerrarPop1(){
+            parpadear(cerrar1);
+        }
+
+        cerrar1.click(function(){
+            dejarParpadear(cerrar1);
+            animacionSalida(cerrar1, 'default', 1);
+            animacionSalida(pop1, 'default', 1);
+            animacionEntrada(robot, 'default', 1);
+            locutarDefinicion();
+        });
+
+        function locutarDefinicion(){
+            aplicacion.reproducirAudio(audio[1], actividadDrag, 1);
+            animacionEntrada(instrucciones, 'default', 1);
+        }
+
+        function actividadDrag(){
+            animacionSalida(instrucciones, 'default', 1);
+            animacionEntrada(drop, 'default', 1);
+            animacionEntrada(nave, 'default', 1);
+            
+            drags.each(function(){
+                delay = delay + .5;
+                animacionEntrada($(this), 'derecha-izquierda', 1, delay);
+            });
+
+            arrastrarCometas();
+        }
+
+        function arrastrarCometas(){
+            drags.draggable({
+                revert: true,
+                start: function( event, ui ) {
+                    dragSelect = $(this).data('lugar');
+                    $(this).css('cursor', 'grabbing');
+                },             
+                stop: function( event, ui ) {
+                    $(this).css('cursor', 'grab');
+                }             
+            });
+
+            drop.droppable({
+                accept: drags,
+                tolerance: "intersect",
+                drop: function( event, ui ) {
+                    dropSelect = $(this).data('lugar');
+                    soltar();
+                }
+            });
+        }
+
+        function soltar(){
+            // Selecionar los elementos correspondiente
+            const dragActivo = $(`#drag${dragSelect}`);
+            const dropActivo = $(`#drop${dropSelect}`);
+
+            animacionSalida(dragActivo, 'default', 1);
+            colocados++;
+
+            if(colocados == 6){
+                animacionSalida(drop, 'default', 1);
+                animacionSalida(robot, 'default', 1);
+                animacionSalida(nave, 'default', 1);
+                actividad();
+            }
+        }
+
+        function actividad(){
+            carrusel(noSlide)
+        }
+
+        function carrusel(pantalla){
+            aplicacion.reproducirAudio(audiosSlides[pantalla], botonAdelante, 1);
+            animacionEntrada(slides[pantalla], 'default', 1, 1);
+
+            if(pantalla > 0 & atras.css('display') == 'none'){
+                animacionEntrada(atras, 'default', 1, 1);
+            }
+        }
+
+        function botonAdelante(){
+            if(noSlide < slides.length -1){
+                parpadear(adelante);
+            }
+            if(noSlide == slides.length -1){
+                mostrarPop2();
+            }
+        }
+
+        adelante.click(function(){
+            if(adelante.css('cursor') == 'pointer'){
+                animacionSalida(slides[noSlide], 'default', 1);
+                aplicacion.detenerAudios();
+                dejarParpadear(adelante);
+                animacionSalida(adelante, 'default', 1);
+                noSlide++;
+                setTimeout(()=>{
+                    carrusel(noSlide);
+                }, 500);
+            }
+        });
+
+        atras.click(function(){
+            if(noSlide > 0){
+                animacionSalida(slides[noSlide], 'default', 1);
+                aplicacion.detenerAudios();
+                noSlide--;
+                
+                setTimeout(()=>{
+                    carrusel(noSlide);
+                }, 500);
+            }
+        });
+
+        function mostrarPop2() {  
+            
+            if(!pop2Visualizado){
+                aplicacion.reproducirAudio(audioPop[1], cerrarPop2, 1);
+                animacionEntrada(pop2, 'default', 1, 1);
+            }
+        }
+
+        function cerrarPop2(){
+            parpadear(cerrar2);
+        }
+
+        cerrar2.click(function(){
+            dejarParpadear(cerrar2);
+            animacionSalida(pop2, 'default', 1);
+            animacionSalida(cerrar2, 'default', 1);
+            pop2Visualizado = true;
+            aplicacion.terminaPantalla();
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 06</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina06/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos botones" id="boton1" src="../img/pagina06/boton1.png" data-posX="314" data-posY="454" alt="">
+    <img class="elementos botones" id="boton2" src="../img/pagina06/boton2.png" data-posX="324" data-posY="244" alt="">
+    <img class="elementos botones" id="boton3" src="../img/pagina06/boton3.png" data-posX="431" data-posY="382" alt="">
+    <img class="elementos botones" id="boton4" src="../img/pagina06/boton4.png" data-posX="297" data-posY="104" alt="">
+    <img class="elementos botones" id="boton5" src="../img/pagina06/boton5.png" data-posX="514" data-posY="162" alt="">
+    <img class="elementos botones" id="boton6" src="../img/pagina06/boton6.png" data-posX="583" data-posY="354" alt="">
+    <img class="elementos botones" id="boton7" src="../img/pagina06/boton7.png" data-posX="661" data-posY="109" alt="">
+    <img class="elementos botones" id="boton8" src="../img/pagina06/boton8.png" data-posX="806" data-posY="251" alt="">
+    <img class="elementos botones" id="boton9" src="../img/pagina06/boton9.png" data-posX="843" data-posY="122" alt="">
+
+    <img class="elementos" id="overlay" src="../img/pagina06/overlay.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="slide1_1" src="../img/pagina06/slide1-1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="slide1_2" src="../img/pagina06/slide1-2.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="slide2_1" src="../img/pagina06/slide2-1.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="slide3_1" src="../img/pagina06/slide3-1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="slide3_2" src="../img/pagina06/slide3-2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="slide3_3" src="../img/pagina06/slide3-3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="slide3_4" src="../img/pagina06/slide3-4.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="slide4_1" src="../img/pagina06/slide4-1.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="slide5_1" src="../img/pagina06/slide5-1.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="slide6_1" src="../img/pagina06/slide6-1.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="slide7_1" src="../img/pagina06/slide7-1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="slide7_2" src="../img/pagina06/slide7-2.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos botonesSlide" id="mal1" data-mal="1" src="../img/pagina06/mal1.png" data-posX="688" data-posY="327" alt="">
+    <img class="elementos botonesSlide" id="mal2" data-mal="2" src="../img/pagina06/mal2.png" data-posX="585" data-posY="359" alt="">
+    <img class="elementos botonesSlide" id="mal3" data-mal="3" src="../img/pagina06/mal3.png" data-posX="585" data-posY="391" alt="">
+    <img class="elementos botonesSlide" id="mal4" data-mal="4" src="../img/pagina06/mal4.png" data-posX="585" data-posY="424" alt="">
+
+    <img class="elementos botonesBien" id="bien1" data-bien="1" src="../img/pagina06/bien1.png" data-posX="584" data-posY="327" alt="">
+    <img class="elementos botonesBien" id="bien2" data-bien="2" src="../img/pagina06/bien2.png" data-posX="791" data-posY="359" alt="">
+    <img class="elementos botonesBien" id="bien3" data-bien="3" src="../img/pagina06/bien3.png" data-posX="688" data-posY="391" alt="">
+    <img class="elementos botonesBien" id="bien4" data-bien="4" src="../img/pagina06/bien4.png" data-posX="688" data-posY="424" alt="">
+
+    <img class="elementos" id="iluminar1" src="../img/pagina06/iluminar1.png" data-posX="584" data-posY="327" alt="">
+    <img class="elementos" id="iluminar2" src="../img/pagina06/iluminar2.png" data-posX="791" data-posY="359" alt="">
+    <img class="elementos" id="iluminar3" src="../img/pagina06/iluminar3.png" data-posX="688" data-posY="391" alt="">
+    <img class="elementos" id="iluminar4" src="../img/pagina06/iluminar4.png" data-posX="688" data-posY="424" alt="">
+
+    <img class="elementos" id="tache" src="../img/pagina06/tache.png" data-posX="" data-posY="" alt="">
+
+    <img class="elementos" id="slide8_1" src="../img/pagina06/slide8-1.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="slide9_1" src="../img/pagina06/slide9-1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="slide9_2" src="../img/pagina06/slide9-2.png" data-posX="0" data-posY="0" alt="">
+    
+    <img class="elementos botonCerrar" id="cerrar1" src="../img/pagina06/cerrar.png" data-posX="854" data-posY="109" alt="">
+    <img class="elementos botonCerrar" id="cerrar2" src="../img/pagina06/cerrar.png" data-posX="854" data-posY="109" alt="">
+    <img class="elementos botonCerrar" id="cerrar3" src="../img/pagina06/cerrar.png" data-posX="854" data-posY="109" alt="">
+    <img class="elementos botonCerrar" id="cerrar4" src="../img/pagina06/cerrar.png" data-posX="854" data-posY="109" alt="">
+    <img class="elementos botonCerrar" id="cerrar5" src="../img/pagina06/cerrar.png" data-posX="854" data-posY="109" alt="">
+    <img class="elementos botonCerrar" id="cerrar6" src="../img/pagina06/cerrar.png" data-posX="854" data-posY="109" alt="">
+    <img class="elementos botonCerrar" id="cerrar7" src="../img/pagina06/cerrar.png" data-posX="854" data-posY="109" alt="">
+    <img class="elementos botonCerrar" id="cerrar8" src="../img/pagina06/cerrar.png" data-posX="854" data-posY="109" alt="">
+    <img class="elementos botonCerrar" id="cerrar9" src="../img/pagina06/cerrar.png" data-posX="854" data-posY="109" alt="">
+
+    <img class="elementos" id="adelante" src="../img/pagina06/adelante.png" data-posX="892" data-posY="257" alt="">
+    <img class="elementos" id="atras" src="../img/pagina06/atras.png" data-posX="96" data-posY="257" alt="">
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondo = $('#fondo');
+        const adelante = $('#adelante');
+        const atras = $('#atras');
+
+        const boton1 = $('#boton1');
+        const boton2 = $('#boton2');
+        const boton3 = $('#boton3');
+        const boton4 = $('#boton4');
+        const boton5 = $('#boton5');
+        const boton6 = $('#boton6');
+        const boton7 = $('#boton7');
+        const boton8 = $('#boton8');
+        const boton9 = $('#boton9');
+
+        const mal1 = $('#mal1');
+        const mal2 = $('#mal2');
+        const mal3 = $('#mal3');
+        const mal4 = $('#mal4');
+
+        const bien1 = $('#bien1');
+        const bien2 = $('#bien2');
+        const bien3 = $('#bien3');
+        const bien4 = $('#bien4');
+
+        const iluminar1 = $('#iluminar1');
+        const iluminar2 = $('#iluminar2');
+        const iluminar3 = $('#iluminar3');
+        const iluminar4 = $('#iluminar4');
+
+        const tache = $('#tache');
+        const botonesSlide = $('.botonesSlide');
+        const botonesBien = $('.botonesBien');
+
+        const overlay = $('#overlay');
+        
+        const slide1_1 = $('#slide1_1');
+        const slide1_2 = $('#slide1_2');
+
+        const slide2_1 = $('#slide2_1');
+
+        const slide3_1 = $('#slide3_1');
+        const slide3_2 = $('#slide3_2');
+        const slide3_3 = $('#slide3_3');
+        const slide3_4 = $('#slide3_4');
+        
+        const slide4_1 = $('#slide4_1');
+        const slide5_1 = $('#slide5_1');
+        const slide6_1 = $('#slide6_1');
+        
+        const slide7_1 = $('#slide7_1');
+        const slide7_2 = $('#slide7_2');
+        
+        const slide8_1 = $('#slide8_1');
+        
+        const slide9_1 = $('#slide9_1');
+        const slide9_2 = $('#slide9_2');
+        
+        const cerrar1 = $('#cerrar1');
+        const cerrar2 = $('#cerrar2');
+        const cerrar3 = $('#cerrar3');
+        const cerrar4 = $('#cerrar4');
+        const cerrar5 = $('#cerrar5');
+        const cerrar6 = $('#cerrar6');
+        const cerrar7 = $('#cerrar7');
+        const cerrar8 = $('#cerrar8');
+        const cerrar9 = $('#cerrar9');
+
+        atras.css('cursor', 'pointer');
+
+        const botones = $('.botones');
+        const botonCerrar = $('.botonCerrar');
+
+        const pop1 = [slide1_1, slide1_2];
+        const pop2 = [slide2_1];
+        const pop3 = [slide3_1, slide3_2, slide3_3, slide3_4];
+        const pop4 = [slide4_1];
+        const pop5 = [slide5_1];
+        const pop6 = [slide6_1];
+        const pop7 = [slide7_1, slide7_2];
+        const pop8 = [slide8_1];
+        const pop9 = [slide9_1, slide9_2];
+
+        const botonActivo = [boton1, boton2, boton3, boton4, boton5, boton6, boton7, boton8, boton9];
+
+        const listaSlides = [pop1, pop2, pop3, pop4, pop5, pop6, pop7, pop8, pop9];
+
+        const cerrar = [cerrar1, cerrar2, cerrar3, cerrar4, cerrar5, cerrar6, cerrar7, cerrar8, cerrar9];
+
+        let indexPop = 0;
+        let indexPantalla = 0;
+        let aciertos = 0;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Pfizer_Documentacion_06_01.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_06_02.mp3')
+        ]
+
+        const audioSlide1 = [
+            new Audio('../audios/Pfizer_Documentacion_06_03.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_06_04.mp3'),
+        ]
+
+        const audioSlide2 = [
+            new Audio('../audios/Pfizer_Documentacion_06_05.mp3'),
+        ]
+
+        const audioSlide3 = [
+            new Audio('../audios/Pfizer_Documentacion_06_06.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_06_07.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_06_08.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_06_09.mp3'),
+        ]
+
+        const audioSlide4 = [
+            new Audio('../audios/Pfizer_Documentacion_06_10.mp3')
+        ]
+
+        const audioSlide5 = [
+            new Audio('../audios/Pfizer_Documentacion_06_11.mp3')
+        ]
+
+        const audioSlide6 = [
+            new Audio('../audios/Pfizer_Documentacion_06_12.mp3')
+        ]
+
+        const audioSlide7 = [
+            new Audio('../audios/Pfizer_Documentacion_06_13.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_06_14.mp3'),
+        ]
+
+        const audioSlide8 = [
+            new Audio('../audios/Pfizer_Documentacion_06_15.mp3')
+        ]
+
+        const audioSlide9 = [
+            new Audio('../audios/Pfizer_Documentacion_06_16.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_06_17.mp3')
+        ]
+
+        const audiosRetro = [
+            new Audio('../audios/s_bien.mp3'),
+            new Audio('../audios/s_mal.mp3')
+        ]
+
+        const listaAudios = [audioSlide1, audioSlide2, audioSlide3, audioSlide4, audioSlide5, audioSlide6, audioSlide7, audioSlide8, audioSlide9];
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], dialogo, 1);
+            animacionEntrada(fondo, 'default', 1, 1);
+        }
+
+        function dialogo(){
+            aplicacion.reproducirAudio(audio[1], botonera, 1);
+        }
+
+        function botonera(){
+            parpadear(botonActivo[indexPop]);
+        }
+
+        botones.each(function(){
+            $(this).click(function(){
+                if($(this).css('cursor') == 'pointer'){
+                    animacionEntrada(overlay, 'default', 1);
+                    dejarParpadear($(this));
+                    carrusel();
+                }
+            });
+        });
+
+        function carrusel(){
+
+            if(indexPop == 6 && indexPantalla == 1){
+                aplicacion.reproducirAudio(listaAudios[indexPop][indexPantalla], actividadBotones, 1);
+
+                animacionEntrada(botonesSlide, 'default', 1);
+                animacionEntrada(botonesBien, 'default', 1);
+            }
+            else{
+                aplicacion.reproducirAudio(listaAudios[indexPop][indexPantalla], activarBotonAdelante, 1);
+            }
+
+            animacionEntrada(listaSlides[indexPop][indexPantalla], 'default', 1);
+
+            if(indexPantalla > 0 & atras.css('display') == 'none'){
+                animacionEntrada(atras, 'default', 1, 1);
+            }
+        }
+
+        function activarBotonAdelante(){
+
+            if(indexPantalla < listaSlides[indexPop].length -1){
+                parpadear(adelante);
+
+                if(indexPop == 6 && indexPantalla == 1){
+                    animacionSalida(iluminar1, 'default', 1);
+                    animacionSalida(iluminar2, 'default', 1);
+                    animacionSalida(iluminar3, 'default', 1);
+                    animacionSalida(iluminar4, 'default', 1);
+                    animacionSalida(botonesBien, 'default', 1);
+                    animacionSalida(botonesSlide, 'default', 1);
+                }
+            }
+            if(indexPantalla == listaSlides[indexPop].length -1){
+                activarBotonCerrar();
+            }
+        }
+
+        adelante.click(function(){
+            if(adelante.css('cursor') == 'pointer'){
+                animacionSalida(listaSlides[indexPop][indexPantalla], 'default', 1);
+                aplicacion.detenerAudios();
+                dejarParpadear(adelante);
+                animacionSalida(adelante, 'default', 1);
+                indexPantalla++;
+                setTimeout(()=>{
+                    carrusel();
+                }, 1000);
+            }
+        });
+
+        atras.click(function(){
+            if(indexPantalla > 0){
+                animacionSalida(listaSlides[indexPop][indexPantalla], 'default', 1);
+                aplicacion.detenerAudios();
+                indexPantalla--;
+                
+                setTimeout(()=>{
+                    carrusel();
+                }, 1000);
+            }
+        });
+
+        function activarBotonCerrar(){  
+            parpadear(cerrar[indexPop]);
+        }
+
+        botonCerrar.each(function(){
+            $(this).click(function(){
+                if($(this).css('cursor') == 'pointer'){
+                    dejarParpadear($(this));                    
+                    animacionSalida(overlay, 'default', 1);
+                    animacionSalida(adelante, 'default', 1);
+                    animacionSalida(atras, 'default', 1);
+                    animacionSalida(listaSlides[indexPop][indexPantalla], 'default', 1);
+                    animacionSalida(cerrar[indexPop], 'default', 1);
+                    indexPantalla = 0;
+                    siguiente();
+                }
+            });
+        });
+
+        function siguiente() {  
+            indexPop++;
+
+            if(indexPop < listaSlides.length){
+                botonera();
+            }
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
+        
+        function actividadBotones(){
+            botonesSlide.css('cursor', 'pointer');
+            botonesBien.css('cursor', 'pointer');
+        }
+
+        botonesBien.click(function(){
+            if($(this).css('cursor') == 'pointer'){
+
+                audiosRetro[0].play();
+
+                const noBoton = $(this).data('bien');
+
+                switch(noBoton){
+                    case 1:
+                        animacionEntrada(iluminar1, 'default', 1);
+                        mal1.css('cursor', 'default');
+                        break;
+                    case 2:
+                        animacionEntrada(iluminar2, 'default', 1);
+                        mal2.css('cursor', 'default');
+                        break;
+                    case 3:
+                        animacionEntrada(iluminar3, 'default', 1);
+                        mal3.css('cursor', 'default');
+                        break;
+                    case 4:
+                        animacionEntrada(iluminar4, 'default', 1);
+                        mal4.css('cursor', 'default');
+                        break;
+                    default: break;
+                }
+
+                aciertos++;
+
+                if(aciertos == 4){
+                    activarBotonAdelante();
+                }
+            }
+        });
+
+
+        botonesSlide.click(function(){
+            if($(this).css('cursor') == 'pointer'){
+
+                audiosRetro[1].play();
+
+                const noBoton = $(this).data('mal');
+
+                switch(noBoton){
+                    case 1:
+                        tache.css({
+                            'left': '874px',
+                            'top': '329px'
+                        });
+                        break;
+                    case 2:
+                        tache.css({
+                            'left': '874px',
+                            'top': '362px'
+                        });
+                        break;
+                    case 3:
+                        tache.css({
+                            'left': '874px',
+                            'top': '394px'
+                        });
+                        break;
+                    case 4:
+                        tache.css({
+                            'left': '874px',
+                            'top': '430px'
+                        });
+                        break;
+                    default: break;
+                }
+
+                animacionEntrada(tache, 'default', 1);
+
+                setTimeout(()=> {
+                    animacionSalida(tache, 'default', 1);
+                }, 2000);
+            }
+        });
+
+    </script>
+</body>
+</html>
