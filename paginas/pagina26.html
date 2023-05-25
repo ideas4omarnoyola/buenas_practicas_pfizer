@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 16</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="fondo" src="../img/pagina26/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="../img/pagina26/dialogo.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="info1_1" src="../img/pagina26/info1_1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info1_2" src="../img/pagina26/info1_2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info1_3" src="../img/pagina26/info1_3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info1_4" src="../img/pagina26/info1_4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info1_5" src="../img/pagina26/info1_5.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="info2_1" src="../img/pagina26/info2_1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info2_2" src="../img/pagina26/info2_2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info2_3" src="../img/pagina26/info2_3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info2_4" src="../img/pagina26/info2_4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info2_5" src="../img/pagina26/info2_5.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info2_6" src="../img/pagina26/info2_6.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info2_7" src="../img/pagina26/info2_7.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="boton1" src="../img/pagina26/boton1.png" data-posX="30" data-posY="125">
+    <img class="elementos" id="boton2" src="../img/pagina26/boton2.png" data-posX="30" data-posY="284">
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo = $('#fondo');
+        const dialogo = $('#dialogo');
+        const boton1 = $('#boton1');
+        const boton2 = $('#boton2');
+
+        const info1_1 = $('#info1_1');
+        const info1_2 = $('#info1_2');
+        const info1_3 = $('#info1_3');
+        const info1_4 = $('#info1_4');
+        const info1_5 = $('#info1_5');
+
+        const info2_1 = $('#info2_1');
+        const info2_2 = $('#info2_2');
+        const info2_3 = $('#info2_3');
+        const info2_4 = $('#info2_4');
+        const info2_5 = $('#info2_5');
+        const info2_6 = $('#info2_6');
+        const info2_7 = $('#info2_7');
+
+        const informacion1 = [info1_2, info1_3, info1_4, info1_5];
+        let indexInfo1 = 0;
+
+        const informacion2 = [info2_1, info2_3, info2_4, info2_5, info2_6, info2_7];
+        let indexInfo2 = 0;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Pfizer_Documentacion_26_01.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_26_02.mp3')
+        ]
+
+        const audioInfo1 = [
+            new Audio('../audios/Pfizer_Documentacion_26_03.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_26_04.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_26_05.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_26_06.mp3'),
+        ]
+
+        const audioInfo2 = [
+            new Audio('../audios/Pfizer_Documentacion_26_07.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_26_08.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_26_09.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_26_10.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_26_11.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_26_12.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_26_13.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], activarBoton1, 1);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(dialogo, 'izquierda-derecha', 1, 1);
+            animacionEntrada(boton1, 'arriba-abajo', 1, 2);
+            animacionEntrada(boton2, 'arriba-abajo', 1, 2.5);
+        }
+
+        function activarBoton1(){
+            parpadear(boton1);
+        }
+
+        boton1.click(function(){
+            if(boton1.css('cursor') == 'pointer'){
+                dejarParpadear(boton1);
+                animacionSalida(dialogo, 'default', 1);
+
+                aplicacion.reproducirAudio(audio[1], narrarInfo1, 1);
+                animacionEntrada(info1_1, 'default', 1, 1);
+            }
+        });
+
+        function narrarInfo1(){
+            aplicacion.reproducirAudio(audioInfo1[indexInfo1], siguiente1, 1);
+            animacionEntrada(informacion1[indexInfo1], 'default', 1);
+        }
+
+        function siguiente1(){
+            animacionSalida(informacion1[indexInfo1], 'default', 1);
+            indexInfo1++;
+            
+            if(indexInfo1 < informacion1.length){
+                narrarInfo1();
+            }
+            else{
+                activarBoton2();
+            }
+        }
+
+        function activarBoton2(){
+            parpadear(boton2);
+        }
+
+        boton2.click(function(){
+            if(boton2.css('cursor') == 'pointer'){
+                dejarParpadear(boton2);
+                animacionSalida(info1_1, 'default', 1);
+                
+                setTimeout(() => {
+                    narrarInfo2();
+                }, 1000);
+            }
+        });
+
+        function narrarInfo2(){
+            aplicacion.reproducirAudio(audioInfo2[indexInfo2], siguiente2, 1);
+            animacionEntrada(informacion2[indexInfo2], 'default', 1);
+        }
+
+        function siguiente2(){
+            indexInfo2++;
+            if(indexInfo2 < informacion2.length){
+                narrarInfo2();
+            }
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
+        
+
+    </script>
+</body>
+</html>

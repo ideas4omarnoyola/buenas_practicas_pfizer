@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 21</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="fondo" src="../img/pagina21/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="boton" src="../img/pagina21/boton.png" data-posX="715" data-posY="303">
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo = $('#fondo');
+        const boton = $('#boton');
+
+        // Audios------------------------------------------------------
+
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(boton, 'default', 1);
+            activarBoton();
+        }
+
+        function activarBoton(){
+            parpadear(boton);
+        }
+
+        boton.click(function(){
+            if(boton.css('cursor') == 'pointer'){
+                dejarParpadear(boton);
+                aplicacion.siguientePagina();
+            }
+        });
+
+    </script>
+</body>
+</html>

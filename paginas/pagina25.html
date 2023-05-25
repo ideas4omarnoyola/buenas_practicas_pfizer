@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 25</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="fondo" src="../img/pagina25/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="../img/pagina25/dialogo.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos infos2" id="base2" src="../img/pagina25/base2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos3" id="base3" src="../img/pagina25/base3.png" data-posX="0" data-posY="0" alt="">
+    
+    <img class="elementos" id="info1" src="../img/pagina25/info1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos2" id="info2_1" src="../img/pagina25/info2_1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos2" id="info2_2" src="../img/pagina25/info2_2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos3" id="info3_1" src="../img/pagina25/info3_1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos3" id="info3_2" src="../img/pagina25/info3_2.png" data-posX="0" data-posY="0" alt="">
+ 
+    <img class="elementos" id="boton1" src="../img/pagina25/boton1.png" data-posX="703" data-posY="256">
+    <img class="elementos" id="boton2" src="../img/pagina25/boton2.png" data-posX="587.949" data-posY="156.40">
+    <img class="elementos" id="boton3" src="../img/pagina25/boton3.png" data-posX="547" data-posY="288.69">
+    <img class="elementos" id="boton4" src="../img/pagina25/boton4.png" data-posX="440.628" data-posY="253.421">
+
+    <img class="elementos infos4" id="base4" src="../img/pagina25/base4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos4" id="info4_1" src="../img/pagina25/info4_1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos infos4" id="info4_2" src="../img/pagina25/info4_2.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="cerrar1" src="../img/pagina25/cerrar1.png" data-posX="767" data-posY="100">
+    <img class="elementos infos2" id="cerrar2" src="../img/pagina25/cerrar2.png" data-posX="466" data-posY="96">
+    <img class="elementos infos3" id="cerrar3" src="../img/pagina25/cerrar3.png" data-posX="466" data-posY="96">
+    <img class="elementos infos4" id="cerrar4" src="../img/pagina25/cerrar4.png" data-posX="956" data-posY="96">
+
+    <img class="elementos infos2" id="adelante2" src="../img/pagina25/adelante2.png" data-posX="488" data-posY="195">
+    <img class="elementos infos3" id="adelante3" src="../img/pagina25/adelante3.png" data-posX="488" data-posY="195">
+    <img class="elementos infos4" id="adelante4" src="../img/pagina25/adelante4.png" data-posX="970" data-posY="195">
+
+    <img class="elementos infos2" id="atras2" src="../img/pagina25/atras2.png" data-posX="8" data-posY="195">
+    <img class="elementos infos3" id="atras3" src="../img/pagina25/atras3.png" data-posX="8" data-posY="195">
+    <img class="elementos infos4" id="atras4" src="../img/pagina25/atras4.png" data-posX="530" data-posY="195">
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo = $('#fondo');
+        const dialogo = $('#dialogo');
+
+        const boton1 = $('#boton1');
+        const boton2 = $('#boton2');
+        const boton3 = $('#boton3');
+        const boton4 = $('#boton4');
+
+        const info1 = $('#info1');
+        const info2_1 = $('#info2_1');
+        const info2_2 = $('#info2_2');
+        const info3_1 = $('#info3_1');
+        const info3_2 = $('#info3_2');
+        const info4_1 = $('#info4_1');
+        const info4_2 = $('#info4_2');
+
+        const cerrar1 = $('#cerrar1');
+        const cerrar2 = $('#cerrar2');
+        const cerrar3 = $('#cerrar3');
+        const cerrar4 = $('#cerrar4');
+
+        const adelante2 = $('#adelante2');
+        const adelante3 = $('#adelante3');
+        const adelante4 = $('#adelante4');
+
+        const base2 = $('#base2');
+        const base3 = $('#base3');
+        const base4 = $('#base4');
+
+        const atras2 = $('#atras2');
+        const atras3 = $('#atras3');
+        const atras4 = $('#atras4');
+
+        const infos2 = $('.infos2');
+        const infos3 = $('.infos3');
+        const infos4 = $('.infos4');
+
+        atras2.css('cursor', 'pointer');
+        atras3.css('cursor', 'pointer');
+        atras4.css('cursor', 'pointer');
+
+        const slidesBtn2 = [info2_1, info2_2];
+        let noSlideBtn2 = 0
+
+        const slidesBtn3 = [info3_1, info3_2];
+        let noSlideBtn3 = 0
+
+        const slidesBtn4 = [info4_1, info4_2];
+        let noSlideBtn4 = 0
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Pfizer_Documentacion_25_01.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_25_02.mp3'),
+        ]
+
+        const audioBtn2 = [
+            new Audio('../audios/Pfizer_Documentacion_25_03.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_25_04.mp3'),
+        ]
+
+        const audioBtn3 = [
+            new Audio('../audios/Pfizer_Documentacion_25_05.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_25_06.mp3'),
+        ]
+
+        const audioBtn4 = [
+            new Audio('../audios/Pfizer_Documentacion_25_07.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_25_08.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], activarBoton1, 1);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(dialogo, 'izquierda-derecha', 1, 1);
+        }
+
+        
+        // Boton 1 --------------------------------------------------------
+        function activarBoton1(){
+            animacionSalida(dialogo, 'default', 1);
+            parpadear(boton1);
+        }
+
+        boton1.click(function(){
+            if(boton1.css('cursor') == 'pointer'){
+                dejarParpadear(boton1);
+                apareceInfo1();
+            }
+        });
+
+        function apareceInfo1(){
+            aplicacion.reproducirAudio(audio[1], cerrarInfo1, 1);
+            animacionEntrada(info1, 'default', .7, 1);
+        }
+
+        function cerrarInfo1(){
+            parpadear(cerrar1)
+        }
+        
+        cerrar1.click(function(){
+            if(cerrar1.css('cursor') == 'pointer'){
+                dejarParpadear(cerrar1);
+                animacionSalida(info1, 'default', 1);
+                animacionSalida(cerrar1, 'default', 1);
+
+                setTimeout(() => {
+                    activarBoton2();
+                }, 1000);
+            }
+        });
+
+        // Boton 2 --------------------------------------------------------
+        function activarBoton2(){
+            parpadear(boton2);
+        }
+
+        boton2.click(function(){
+            if(boton2.css('cursor') == 'pointer'){
+                dejarParpadear(boton2);
+                apareceInfo2();
+            }
+        });
+
+        function apareceInfo2(){
+            animacionEntrada(base2, 'default', .7);
+            carruselBtn2(noSlideBtn2)
+        }
+
+        function carruselBtn2(pantalla){
+            aplicacion.reproducirAudio(audioBtn2[pantalla], botonAdelante2, 1);
+            animacionEntrada(slidesBtn2[pantalla], 'default', 1);
+
+            if(pantalla > 0 & atras2.css('display') == 'none'){
+                animacionEntrada(atras2, 'default', 1, 1);
+            }
+        }
+
+        function botonAdelante2(){
+            if(noSlideBtn2 < slidesBtn2.length -1){
+                parpadear(adelante2);
+            }
+            if(noSlideBtn2 == slidesBtn2.length -1){
+                cerrarInfo2();
+            }
+        }
+
+        adelante2.click(function(){
+            if(adelante2.css('cursor') == 'pointer'){
+                animacionSalida(slidesBtn2[noSlideBtn2], 'default', 1);
+                aplicacion.detenerAudios();
+                dejarParpadear(adelante2);
+                animacionSalida(adelante2, 'default', 1);
+                noSlideBtn2++;
+                setTimeout(()=>{
+                    carruselBtn2(noSlideBtn2);
+                }, 500);
+            }
+        });
+
+        atras2.click(function(){
+            if(noSlideBtn2 > 0){
+                animacionSalida(slidesBtn2[noSlideBtn2], 'default', 1);
+                aplicacion.detenerAudios();
+                noSlideBtn2--;
+                
+                setTimeout(()=>{
+                    carruselBtn2(noSlideBtn2);
+                }, 500);
+            }
+        });
+
+        function cerrarInfo2(){
+            parpadear(cerrar2)
+        }
+        
+        cerrar2.click(function(){
+            if(cerrar2.css('cursor') == 'pointer'){
+                dejarParpadear(cerrar2);
+                animacionSalida(infos2, 'default', 1);
+
+                setTimeout(() => {
+                    activarBoton3();
+                }, 1000);
+            }
+        });
+
+        // Boton 3 --------------------------------------------------------
+        function activarBoton3(){
+            parpadear(boton3);
+        }
+
+        boton3.click(function(){
+            if(boton3.css('cursor') == 'pointer'){
+                dejarParpadear(boton3);
+                apareceInfo3();
+            }
+        });
+
+        function apareceInfo3(){
+            animacionEntrada(base3, 'default', .7);
+            carruselBtn3(noSlideBtn3)
+        }
+
+        function carruselBtn3(pantalla){
+            aplicacion.reproducirAudio(audioBtn3[pantalla], botonAdelante3, 1);
+            animacionEntrada(slidesBtn3[pantalla], 'default', 1);
+
+            if(pantalla > 0 & atras3.css('display') == 'none'){
+                animacionEntrada(atras3, 'default', 1, 1);
+            }
+        }
+
+        function botonAdelante3(){
+            if(noSlideBtn3 < slidesBtn3.length -1){
+                parpadear(adelante3);
+            }
+            if(noSlideBtn3 == slidesBtn3.length -1){
+                cerrarInfo3();
+            }
+        }
+
+        adelante3.click(function(){
+            if(adelante3.css('cursor') == 'pointer'){
+                animacionSalida(slidesBtn3[noSlideBtn3], 'default', 1);
+                aplicacion.detenerAudios();
+                dejarParpadear(adelante3);
+                animacionSalida(adelante3, 'default', 1);
+                noSlideBtn3++;
+                setTimeout(()=>{
+                    carruselBtn3(noSlideBtn3);
+                }, 500);
+            }
+        });
+
+        atras3.click(function(){
+            if(noSlideBtn3 > 0){
+                animacionSalida(slidesBtn3[noSlideBtn3], 'default', 1);
+                aplicacion.detenerAudios();
+                noSlideBtn3--;
+                
+                setTimeout(()=>{
+                    carruselBtn3(noSlideBtn3);
+                }, 500);
+            }
+        });
+
+        function cerrarInfo3(){
+            parpadear(cerrar3)
+        }
+        
+        cerrar3.click(function(){
+            if(cerrar3.css('cursor') == 'pointer'){
+                dejarParpadear(cerrar3);
+                animacionSalida(infos3, 'default', 1);
+
+                setTimeout(() => {
+                    activarBoton4();
+                }, 1000);
+            }
+        });
+
+        // Boton 3 --------------------------------------------------------
+        function activarBoton4(){
+            parpadear(boton4);
+        }
+
+        boton4.click(function(){
+            if(boton4.css('cursor') == 'pointer'){
+                dejarParpadear(boton4);
+                apareceInfo4();
+            }
+        });
+
+        function apareceInfo4(){
+            animacionEntrada(base4, 'default', .7);
+            carruselBtn4(noSlideBtn4)
+        }
+
+        function carruselBtn4(pantalla){
+            aplicacion.reproducirAudio(audioBtn4[pantalla], botonAdelante4, 1);
+            animacionEntrada(slidesBtn4[pantalla], 'default', 1);
+
+            if(pantalla > 0 & atras4.css('display') == 'none'){
+                animacionEntrada(atras4, 'default', 1, 1);
+            }
+        }
+
+        function botonAdelante4(){
+            if(noSlideBtn4 < slidesBtn4.length -1){
+                parpadear(adelante4);
+            }
+            if(noSlideBtn4 == slidesBtn4.length -1){
+                cerrarInfo4();
+            }
+        }
+
+        adelante4.click(function(){
+            if(adelante4.css('cursor') == 'pointer'){
+                animacionSalida(slidesBtn4[noSlideBtn4], 'default', 1);
+                aplicacion.detenerAudios();
+                dejarParpadear(adelante4);
+                animacionSalida(adelante4, 'default', 1);
+                noSlideBtn4++;
+                setTimeout(()=>{
+                    carruselBtn4(noSlideBtn4);
+                }, 500);
+            }
+        });
+
+        atras4.click(function(){
+            if(noSlideBtn4 > 0){
+                animacionSalida(slidesBtn4[noSlideBtn4], 'default', 1);
+                aplicacion.detenerAudios();
+                noSlideBtn4--;
+                
+                setTimeout(()=>{
+                    carruselBtn4(noSlideBtn4);
+                }, 500);
+            }
+        });
+
+        function cerrarInfo4(){
+            parpadear(cerrar4)
+        }
+        
+        cerrar4.click(function(){
+            if(cerrar4.css('cursor') == 'pointer'){
+                dejarParpadear(cerrar4);
+                animacionSalida(infos4, 'default', 1);
+
+                setTimeout(() => {
+                    aplicacion.terminaPantalla();
+                }, 1000);
+            }
+        });
+
+    </script>
+</body>
+</html>

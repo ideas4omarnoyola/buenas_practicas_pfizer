@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 29</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="fondo" src="../img/pagina29/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto1" src="../img/pagina29/texto1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto2" src="../img/pagina29/texto2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="boton" src="../img/pagina29/boton.png" data-posX="233" data-posY="448">
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo = $('#fondo');
+        const texto1 = $('#texto1');
+        const texto2 = $('#texto2');
+        const boton = $('#boton');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Pfizer_Documentacion_29_01.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_29_02.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], siguiente, 1);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(texto1, 'izquierda-derecha', 1, 1);
+        }
+
+        function siguiente(){
+            aplicacion.reproducirAudio(audio[1], activarBoton, 1);
+            animacionEntrada(texto2, 'derecha-izquierda', 1);
+        }
+
+        function activarBoton(){
+            parpadear(boton);
+        }
+
+        boton.click(function(){
+            if(boton.css('cursor') == 'pointer'){
+                dejarParpadear(boton);
+            }
+        });
+
+    </script>
+</body>
+</html>

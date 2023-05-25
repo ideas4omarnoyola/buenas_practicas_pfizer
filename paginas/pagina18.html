@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 18</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/jquery-ui.min.js"></script>
+    <script src="../js/librerias/jquery.ui.touch-punch.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<style>
+    .cursor{
+        cursor:grab;
+    }
+</style>
+<body class="pagina">
+
+    <img class="elementos" id="fondo" src="../img/pagina18/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="subtema" src="../img/pagina18/subtema.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="../img/pagina18/dialogo.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="luna1" src="../img/pagina18/luna1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="luna2" src="../img/pagina18/luna2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="luna3" src="../img/pagina18/luna3.png" data-posX="0" data-posY="0" alt="">
+
+    <div class="elementos drop" id="drop1" data-id="1" data-posX="528" data-posY="382" style="width:73px;  height:57px;" ></div>
+    <div class="elementos drop" id="drop2" data-id="2" data-posX="777" data-posY="415" style="width:73px;  height:57px;" ></div>
+    <div class="elementos drop" id="drop3" data-id="3" data-posX="903" data-posY="239" style="width:73px;  height:57px;" ></div>
+
+    <img class="elementos drag cursor" id="drag1" data-id="1" src="../img/pagina18/drag1.png" data-posX="325.344" data-posY="409" alt="">
+    <img class="elementos drag cursor" id="drag2" data-id="2" src="../img/pagina18/drag2.png" data-posX="325.344" data-posY="409" alt="">
+    <img class="elementos drag cursor" id="drag3" data-id="3" src="../img/pagina18/drag3.png" data-posX="325.344" data-posY="409" alt="">
+
+    <img class="elementos" id="info1_1" src="../img/pagina18/info1_1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info1_2" src="../img/pagina18/info1_2.png" data-posX="0" data-posY="0" alt="">
+ 
+    <img class="elementos" id="info2" src="../img/pagina18/info2.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="info3" src="../img/pagina18/info3.png" data-posX="0" data-posY="0" alt="">
+
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const subtema = $('#subtema'); 
+        const fondo = $('#fondo'); 
+        const dialogo = $('#dialogo'); 
+
+        const drag1 = $('#drag1'); 
+        const drag2 = $('#drag2'); 
+        const drag3 = $('#drag3'); 
+
+        const drop1 = $('#drop1'); 
+        const drop2 = $('#drop2'); 
+        const drop3 = $('#drop3'); 
+ 
+        const luna1 = $('#luna1'); 
+        const luna2 = $('#luna2'); 
+        const luna3 = $('#luna3'); 
+
+        const info1_1 = $('#info1_1');
+        const info1_2 = $('#info1_2');
+
+        const info2 = $('#info2');
+
+        const info3 = $('#info3');
+
+        let verLuna1 = false
+        let verLuna2 = false
+        let verLuna3 = false
+
+
+        let dragSelect;
+        let dropCorrespondiente;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Pfizer_Documentacion_18_01.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_18_02.mp3'),
+        ]
+
+        const audioluna1 = [
+            new Audio('../audios/Pfizer_Documentacion_18_03.mp3'),
+            new Audio('../audios/Pfizer_Documentacion_18_04.mp3'),
+        ]
+
+        const audioluna2 = [
+            new Audio('../audios/Pfizer_Documentacion_18_05.mp3'),
+        ]
+
+        const audioluna3 = [
+            new Audio('../audios/Pfizer_Documentacion_18_06.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], locutaDialogo, 1);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(subtema, 'derecha-izquierda', 1, 1);
+        }
+
+        function locutaDialogo(){
+            aplicacion.reproducirAudio(audio[1], entraLuna1, 1);
+            animacionEntrada(dialogo, 'izquierda-derecha', 1);
+        }
+
+        function entraLuna1(){
+            animacionEntrada(luna1, 'default', 1);
+            animacionEntrada(drop1, 'default', 1);
+            animacionEntrada(drag1, 'abajo-arriba', 1, 1);
+
+            verLuna1 = true;
+
+            verificar();
+        }
+
+        function verificar(){
+            const elementosDrag1 = $('.drag');
+            const elementosDrop1 = $('.drop');
+
+            elementosDrag1.draggable({
+                revert: true,
+                start: function (event, ui) {
+                    dragSelect = $(this).data('id');
+                }
+            });
+
+            elementosDrop1.droppable({
+                accept: ".drag",
+                tolerance: "intersect",
+                drop: function (event, ui) {
+                    dropCorrespondiente = $(this).data('id');
+                    verificarLugar();
+                }
+            });
+        }
+
+        function verificarLugar(){
+            let dragActivo = $(`#drag${dragSelect}`);
+            let dropActivo = $(`#drop${dropCorrespondiente}`);
+
+            const dropTop = dropActivo.css('top');
+            const dropLeft = dropActivo.css('left');
+
+            dragActivo.css({
+                'top': dropTop,
+                'left': dropLeft,
+            });
+            
+            if(dragSelect === dropCorrespondiente){
+                dragActivo.draggable({
+                    revert: false,
+                });
+
+                dragActivo.draggable("disable");
+
+                if(verLuna1){
+                    infoLuna1();
+                }
+
+                if(verLuna2){
+                    infoLuna2();
+                }
+                
+                if(verLuna3){
+                    infoLuna3();
+                }
+                
+            }
+        
+        }
+
+        function infoLuna1(){
+            aplicacion.reproducirAudio(audioluna1[0], infoLuna1_2, 1);
+            animacionEntrada(info1_1, 'default', 1);
+        }
+
+        function infoLuna1_2(){
+            aplicacion.reproducirAudio(audioluna1[1], entraLuna2, 1);
+            animacionEntrada(info1_2, 'default', 1);
+
+            verLuna1 = false;
+        }
+
+        function entraLuna2(){
+            animacionSalida(info1_1, 'default', 1);
+            animacionSalida(info1_2, 'default', 1);
+
+            animacionEntrada(luna2, 'default', 1, 1);
+            animacionEntrada(drop2, 'default', 1, 1);
+            animacionEntrada(drag2, 'abajo-arriba', 1, 1.5);
+
+            verLuna2 = true;
+
+            verificar();
+        }
+
+        function infoLuna2(){
+            aplicacion.reproducirAudio(audioluna2[0], entraLuna3, 1);
+            animacionEntrada(info2, 'default', 1);
+
+            verLuna2 = false
+        }
+
+        function entraLuna3(){
+            animacionSalida(info2, 'default', 1); 
+
+            animacionEntrada(luna3, 'default', 1, 1);
+            animacionEntrada(drop3, 'default', 1, 1);
+            animacionEntrada(drag3, 'abajo-arriba', 1, 1.5);
+
+            verLuna3 = true;
+
+            verificar();
+        }
+
+        function infoLuna3(){
+            aplicacion.reproducirAudio(audioluna3[0], finalPagina, 1);
+            animacionEntrada(info3, 'default', 1);
+
+            verLuna3 = false
+        }
+
+        function finalPagina(){
+            animacionSalida(info3, 'default', 1);
+
+            aplicacion.terminaPantalla();
+        }
+
+        
+    </script>
+</body>
+</html>
