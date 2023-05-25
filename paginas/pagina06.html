@@ -294,15 +294,6 @@
 
             if(indexPantalla < listaSlides[indexPop].length -1){
                 parpadear(adelante);
-
-                if(indexPop == 6 && indexPantalla == 1){
-                    animacionSalida(iluminar1, 'default', 1);
-                    animacionSalida(iluminar2, 'default', 1);
-                    animacionSalida(iluminar3, 'default', 1);
-                    animacionSalida(iluminar4, 'default', 1);
-                    animacionSalida(botonesBien, 'default', 1);
-                    animacionSalida(botonesSlide, 'default', 1);
-                }
             }
             if(indexPantalla == listaSlides[indexPop].length -1){
                 activarBotonCerrar();
@@ -326,7 +317,13 @@
             if(indexPantalla > 0){
                 animacionSalida(listaSlides[indexPop][indexPantalla], 'default', 1);
                 aplicacion.detenerAudios();
+
+                if(indexPop == 6 && indexPantalla == 1){
+                    salidaTabla();
+                }
+
                 indexPantalla--;
+                
                 
                 setTimeout(()=>{
                     carrusel();
@@ -341,7 +338,12 @@
         botonCerrar.each(function(){
             $(this).click(function(){
                 if($(this).css('cursor') == 'pointer'){
-                    dejarParpadear($(this));                    
+                    dejarParpadear($(this));
+                    
+                    if(indexPop == 6 && indexPantalla == 1){
+                        salidaTabla();
+                    }
+                    
                     animacionSalida(overlay, 'default', 1);
                     animacionSalida(adelante, 'default', 1);
                     animacionSalida(atras, 'default', 1);
@@ -447,6 +449,15 @@
                 }, 2000);
             }
         });
+
+        function salidaTabla() {  
+            animacionSalida(iluminar1, 'default', 1);
+            animacionSalida(iluminar2, 'default', 1);
+            animacionSalida(iluminar3, 'default', 1);
+            animacionSalida(iluminar4, 'default', 1);
+            animacionSalida(botonesBien, 'default', 1);
+            animacionSalida(botonesSlide, 'default', 1);
+        }
 
     </script>
 </body>
