@@ -22,15 +22,15 @@
 </head>
 <body class="pagina">
     <img class="elementos" id="fondo" src="../img/pagina06/fondo.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos botones" id="boton1" src="../img/pagina06/boton1.png" data-posX="314" data-posY="454" alt="">
-    <img class="elementos botones" id="boton2" src="../img/pagina06/boton2.png" data-posX="324" data-posY="244" alt="">
-    <img class="elementos botones" id="boton3" src="../img/pagina06/boton3.png" data-posX="431" data-posY="382" alt="">
-    <img class="elementos botones" id="boton4" src="../img/pagina06/boton4.png" data-posX="297" data-posY="104" alt="">
-    <img class="elementos botones" id="boton5" src="../img/pagina06/boton5.png" data-posX="514" data-posY="162" alt="">
-    <img class="elementos botones" id="boton6" src="../img/pagina06/boton6.png" data-posX="583" data-posY="354" alt="">
-    <img class="elementos botones" id="boton7" src="../img/pagina06/boton7.png" data-posX="661" data-posY="109" alt="">
-    <img class="elementos botones" id="boton8" src="../img/pagina06/boton8.png" data-posX="806" data-posY="251" alt="">
-    <img class="elementos botones" id="boton9" src="../img/pagina06/boton9.png" data-posX="843" data-posY="122" alt="">
+    <img class="elementos botones" id="boton1" data-index="0" src="../img/pagina06/boton1.png" data-posX="314" data-posY="454" alt="">
+    <img class="elementos botones" id="boton2" data-index="1" src="../img/pagina06/boton2.png" data-posX="324" data-posY="244" alt="">
+    <img class="elementos botones" id="boton3" data-index="2" src="../img/pagina06/boton3.png" data-posX="431" data-posY="382" alt="">
+    <img class="elementos botones" id="boton4" data-index="3" src="../img/pagina06/boton4.png" data-posX="297" data-posY="104" alt="">
+    <img class="elementos botones" id="boton5" data-index="4" src="../img/pagina06/boton5.png" data-posX="514" data-posY="162" alt="">
+    <img class="elementos botones" id="boton6" data-index="5" src="../img/pagina06/boton6.png" data-posX="583" data-posY="354" alt="">
+    <img class="elementos botones" id="boton7" data-index="6" src="../img/pagina06/boton7.png" data-posX="661" data-posY="109" alt="">
+    <img class="elementos botones" id="boton8" data-index="7" src="../img/pagina06/boton8.png" data-posX="806" data-posY="251" alt="">
+    <img class="elementos botones" id="boton9" data-index="8" src="../img/pagina06/boton9.png" data-posX="843" data-posY="122" alt="">
 
     <img class="elementos" id="overlay" src="../img/pagina06/overlay.png" data-posX="0" data-posY="0" alt="">
 
@@ -186,6 +186,7 @@
         let indexPop = 0;
         let indexPantalla = 0;
         let aciertos = 0;
+        let botonesActivos = false;
 
         // Audios------------------------------------------------------
         const audio = [
@@ -266,6 +267,13 @@
                 if($(this).css('cursor') == 'pointer'){
                     animacionEntrada(overlay, 'default', 1);
                     dejarParpadear($(this));
+
+                    if(botonesActivos){
+                        indexPop = $(this).data('index');
+                        animacionEntrada(cerrar[indexPop], 'default', 1);
+                        cerrar[indexPop].css('cursor', 'pointer');
+                    }
+
                     carrusel();
                 }
             });
@@ -344,13 +352,17 @@
                         salidaTabla();
                     }
                     
+                    aplicacion.detenerAudios();
                     animacionSalida(overlay, 'default', 1);
                     animacionSalida(adelante, 'default', 1);
                     animacionSalida(atras, 'default', 1);
                     animacionSalida(listaSlides[indexPop][indexPantalla], 'default', 1);
                     animacionSalida(cerrar[indexPop], 'default', 1);
                     indexPantalla = 0;
-                    siguiente();
+
+                    if(!botonesActivos){
+                        siguiente();
+                    }
                 }
             });
         });
@@ -362,6 +374,8 @@
                 botonera();
             }
             else{
+                botones.css('cursor', 'pointer');
+                botonesActivos = true;
                 aplicacion.terminaPantalla();
             }
         }
@@ -457,6 +471,7 @@
             animacionSalida(iluminar4, 'default', 1);
             animacionSalida(botonesBien, 'default', 1);
             animacionSalida(botonesSlide, 'default', 1);
+            aciertos = 0;
         }
 
     </script>
