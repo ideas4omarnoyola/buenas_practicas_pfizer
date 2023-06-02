@@ -266,12 +266,14 @@
             $(this).click(function(){
                 if($(this).css('cursor') == 'pointer'){
                     animacionEntrada(overlay, 'default', 1);
-                    dejarParpadear($(this));
 
                     if(botonesActivos){
                         indexPop = $(this).data('index');
                         animacionEntrada(cerrar[indexPop], 'default', 1);
                         cerrar[indexPop].css('cursor', 'pointer');
+                    }
+                    else{
+                        dejarParpadear($(this));
                     }
 
                     carrusel();
